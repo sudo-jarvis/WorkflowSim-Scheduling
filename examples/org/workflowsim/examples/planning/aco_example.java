@@ -60,7 +60,7 @@ public class aco_example extends WorkflowSimBasicExample1 {
              * the data center or the host doesn't have sufficient resources the
              * exact vmNum would be smaller than that. Take care.
              */
-            int vmNum = 50;//number of vms;
+            int vmNum = 15;//number of vms;
             /**
              * Should change this based on real physical path
              */

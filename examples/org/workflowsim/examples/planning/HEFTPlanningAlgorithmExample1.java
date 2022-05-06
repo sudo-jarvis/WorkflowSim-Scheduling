@@ -103,7 +103,7 @@ public class HEFTPlanningAlgorithmExample1 extends WorkflowSimBasicExample1 {
              * override the result of the planner
              */
             Parameters.SchedulingAlgorithm sch_method = Parameters.SchedulingAlgorithm.FCFS;
-            Parameters.PlanningAlgorithm pln_method = Parameters.PlanningAlgorithm.aco;
+            Parameters.PlanningAlgorithm pln_method = Parameters.PlanningAlgorithm.HEFT;
             ReplicaCatalog.FileSystem file_system = ReplicaCatalog.FileSystem.LOCAL;
 
             /**
@@ -157,13 +157,13 @@ public class HEFTPlanningAlgorithmExample1 extends WorkflowSimBasicExample1 {
             /**
              * Binds the data centers with the scheduler.
              */
-//            wfEngine.bindSchedulerDatacenter(datacenter0.getId(), 0);
+            wfEngine.bindSchedulerDatacenter(datacenter0.getId(), 0);
 
             CloudSim.startSimulation();
-//            List<Job> outputList0 = wfEngine.getJobsReceivedList();
+            List<Job> outputList0 = wfEngine.getJobsReceivedList();
             CloudSim.stopSimulation();
            
-//            printJobList(outputList0);
+            printJobList(outputList0);
         } catch (Exception e) {
             Log.printLine("The simulation has been terminated due to an unexpected error");
         }

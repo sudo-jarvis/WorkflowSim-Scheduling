@@ -4,6 +4,8 @@ import java.util.*;
 import org.cloudbus.cloudsim.Log;
 import org.workflowsim.CondorVM;
 import org.workflowsim.Task;
+import java.time.*;
+
 
 public class aco extends BasePlanningAlgorithm {
 
@@ -18,7 +20,7 @@ public class aco extends BasePlanningAlgorithm {
 	public static double alpha = 0.3;
 	public static double beta = 1;
 	public static double rho = 0.4;
-	public static int ants = 15;
+	public static int ants = 4;
     public static double makespan = 0.0;
     public static double [] time = new double[100];
     
@@ -136,10 +138,10 @@ public class aco extends BasePlanningAlgorithm {
 		return opt_sol;
 	}
 
-    
-
+   
 
     public void run() {
+    	Instant start = Instant.now();
         Log.printLine("ACO running with " + getTaskList().size()
                 + " tasks.");
 
@@ -152,10 +154,21 @@ public class aco extends BasePlanningAlgorithm {
           no_tasks = cloudletList.size();
           no_vms = vmList.size();
           List <CondorVM> scheduledTasks = schedule();
-          for(int i=0;i<scheduledTasks.size();i++) {
-        	  cloudletList.get(i).setVmId(scheduledTasks.get(i).getId());
-        	  Log.printLine(cloudletList.get(i).getCloudletId() + " : " + cloudletList.get(i).getCloudletLength() + " : " + scheduledTasks.get(i).getId());
+          
+          Instant end = Instant.now();
+          Duration timeElapsed = Duration.between(start, end);
+          Log.printLine("\n\nExecution Time: "+ timeElapsed.getNano() +"\n");
+          double makespan = 0;
+          for(int i=0;i<no_vms;i++){
+              makespan = Math.max(makespan, time[i]);
           }
+ 
+          Log.printLine("\nMakespan: "+ makespan +"\n");
+//          for(int i=0;i<scheduledTasks.size();i++) {
+//        	  cloudletList.get(i).setVmId(scheduledTasks.get(i).getId());
+//        	  Log.printLine(cloudletList.get(i).getCloudletId() + " : " + cloudletList.get(i).getCloudletLength() + " : " + scheduledTasks.get(i).getId());
+//          }
+         
 
         System.out.println("\n\n\n\n\n\n\n");
         
