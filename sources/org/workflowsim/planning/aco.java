@@ -164,10 +164,10 @@ public class aco extends BasePlanningAlgorithm {
           }
  
           Log.printLine("\nMakespan: "+ makespan +"\n");
-//          for(int i=0;i<scheduledTasks.size();i++) {
-//        	  cloudletList.get(i).setVmId(scheduledTasks.get(i).getId());
-//        	  Log.printLine(cloudletList.get(i).getCloudletId() + " : " + cloudletList.get(i).getCloudletLength() + " : " + scheduledTasks.get(i).getId());
-//          }
+         for(int i=0;i<scheduledTasks.size();i++) {
+       	  cloudletList.get(i).setVmId(scheduledTasks.get(i).getId());
+       	  Log.printLine(cloudletList.get(i).getCloudletId() + " : " + cloudletList.get(i).getCloudletLength() + " : " + scheduledTasks.get(i).getId());
+         }
          
 
         System.out.println("\n\n\n\n\n\n\n");
